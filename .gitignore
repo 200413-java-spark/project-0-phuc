@@ -1,1 +1,5 @@
-TextTTT.class
+target/*
+.classpath
+.project
+.settings/
+.vscode/

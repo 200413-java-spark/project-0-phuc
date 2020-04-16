@@ -1,4 +1,4 @@
-#Simple tic-tac-toe text based game
+# Simple tic-tac-toe text based game
 
 Initial display: tic-tac-toe board using text with numbers 1 through 9 in spaces
 
