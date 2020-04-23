@@ -1,7 +1,7 @@
 package com.github.phuctle.textttt.winverify;
 
 public class CheckState {
-    public static int checkIn(int[] arg) {
+    public int checkIn(int[] arg) {
         int retVal = 0;
         if (arg[0] == arg[1] && arg[0] == arg[2])//first row 
         retVal = arg[0];
@@ -19,6 +19,7 @@ public class CheckState {
         retVal = arg[0];
         else if (arg[6] == arg[4] && arg[6] == arg[2])//diag up
         retVal = arg[6];
+
     return retVal;
     }
 }

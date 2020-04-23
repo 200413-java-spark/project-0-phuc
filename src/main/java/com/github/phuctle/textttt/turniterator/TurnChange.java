@@ -1,8 +1,13 @@
 package com.github.phuctle.textttt.turniterator;
 
-//import com.github.phuctle.textttt.winverify.CheckState;
+import com.github.phuctle.textttt.winverify.CheckState;
+import com.github.phuctle.textttt.io.FileParser;
 
 public class TurnChange {
+    
+    CheckState checkState = new CheckState();
+    private int posSelectInt;
+
     public void turnIterator(char gameBoardOut[]){
 
         int[] pos = {0,0,0,0,0,0,0,0,0};
@@ -13,11 +18,16 @@ public class TurnChange {
             if ((turnCounter % 2) == 1)//odd for P1 and even for P2
             {
                 System.out.print("Player 1: "); 
-                String posSelect = System.console().readLine();//reads in userinput
-                int posSelectInt = Integer.parseInt(posSelect);
-                //System.out.println(posSelectInt);
 
-                switch (posSelectInt) {
+                try {
+                    String posSelect = System.console().readLine();//reads in userinput
+                    this.posSelectInt = Integer.parseInt(posSelect);   
+                } catch (NumberFormatException e) {
+                    this.posSelectInt = -1;
+                }
+                
+              
+				switch (posSelectInt) {
                     case 1:  {if(pos[0] == 0){//checks to see if position on board
                     gameBoardOut[1] ='x'; //is taken, if not makes that player
                         pos[0] = 1;} //occupy that space
@@ -90,7 +100,7 @@ public class TurnChange {
                                 turnCounter--;
                                 continue;}
                                 break;}
-                    default: System.out.println("Invalid Input");
+                    default: System.out.println("Invalid Input! Try again.");
                                 turnCounter--;
                                 continue;
 
@@ -99,10 +109,13 @@ public class TurnChange {
         }
         if ((turnCounter % 2) == 0)
             {
-                System.out.print("Player 2: "); 
-                String posSelect = System.console().readLine();
-                int posSelectInt = Integer.parseInt(posSelect);
-                //System.out.println(posSelectInt);
+                System.out.print("Player 2: ");
+                try {
+                    String posSelect = System.console().readLine();//reads in userinput
+                    this.posSelectInt = Integer.parseInt(posSelect);   
+                } catch (NumberFormatException e) {
+                    this.posSelectInt = -1;
+                }
 
                 switch (posSelectInt) {
                     case 1:  {if(pos[0] == 0){
@@ -177,7 +190,7 @@ public class TurnChange {
                                 turnCounter--;
                                 continue;}
                                 break;}
-                    default: System.out.println("Invalid Input");
+                    default: System.out.println("Invalid Input! Try again.");
                                 turnCounter--;
                                 continue;
             }
@@ -186,23 +199,10 @@ public class TurnChange {
         System.out.println(" ");
         System.out.println(gameBoardOut);
         
-        int retVal = 0;
-        if (pos[0] == pos[1] && pos[0] == pos[2])//first row 
-        retVal = pos[0];
-        else if (pos[3] == pos[4] && pos[3] == pos[5])//second row 
-        retVal = pos[3];
-        else if (pos[6] == pos[7] && pos[6] == pos[8])//third row 
-        retVal = pos[6];
-        else if (pos[0] == pos[3] && pos[0] == pos[6])//first col
-        retVal = pos[0];
-        else if (pos[1] == pos[4] && pos[1] == pos[7])//second col
-        retVal = pos[1];
-        else if (pos[2] == pos[5] && pos[2] == pos[8])//third col
-        retVal = pos[2];
-        else if (pos[0] == pos[4] && pos[0] == pos[8])//diag down
-        retVal = pos[0];
-        else if (pos[6] == pos[4] && pos[6] == pos[2])//diag up
-        retVal = pos[6];
+        FileParser.write(gameBoardOut);
+
+
+        int retVal = checkState.checkIn(pos);
 
         if (retVal == 1){
             System.out.println("Player 1 wins!");
