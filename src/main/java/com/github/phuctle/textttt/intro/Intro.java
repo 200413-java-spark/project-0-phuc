@@ -1,27 +1,39 @@
 package com.github.phuctle.textttt.intro;
 
+import java.io.IOError;
+import java.util.HashSet;
+
 public class Intro {
-    public char[] runIntro(){
+    private String selection;
 
-    System.out.println("\nTic-Tac-Toe\nFirst player inputs a number to");
-    System.out.println("select where to place the first x.");
+    public String runIntro(){
+        CreateBlankBoard newBoard = CreateBlankBoard.getInstance();
+        newBoard.createGameBoard();
+        HashSet<String> selectionsHash = new HashSet<String>();//more selections can be added if needed
+        selectionsHash.add("q");
+        selectionsHash.add("1");
+        selectionsHash.add("2");
 
-    String row1 = " 1 | 2 | 3 \n";
-    String row2 = "-----------\n";
-    String row3 = " 4 | 5 | 6 \n";
-    String row4 = "-----------\n";
-    String row5 = " 7 | 8 | 9 \n";
-    String gameBoardStr = row1+row2+row3+row4+row5;
+    System.out.println("\nText Tic-Tac-Toe\nSelect one of the options below "+
+    "or type 'q' to quit the program.\n"
+    +"Type '1' to play a single game of Tic-Tac-Toe between two human players.\n"
+    +"Type '2' to type in the name of a file with game moves to record to the database.");
     
-    //creating a character array
-    char[] gameBoardOut= new char[gameBoardStr.length()];
-    int strLength = gameBoardStr.length();
-    //duplicating the string into the char array
-    for(int i = 0; i <strLength; i++){
-        gameBoardOut[i] = gameBoardStr.charAt(i);
+        while(true){
+    try {
+        System.out.print("Selection: ");
+        this.selection = System.console().readLine();//reads in userinput
+    } catch (IOError e) {
+        e.printStackTrace();
     }
-    
-    System.out.print(gameBoardOut);
-    return gameBoardOut;
+
+	if (selectionsHash.contains(this.selection)){
+        return this.selection;
+    }
+    else{
+        System.out.println("Invalid Input. Try again.");
+    }
+}
+
     }
 }
