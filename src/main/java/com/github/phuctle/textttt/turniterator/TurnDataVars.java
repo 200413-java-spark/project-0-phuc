@@ -3,27 +3,35 @@ package com.github.phuctle.textttt.turniterator;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class TurnDataVars {
-    private int[] pos = {0,0,0,0,0,0,0,0,0};
-    private int turnNum;
+public class TurnDataVars {
+    private String messageFinal;
+    private int retVal;
     private char[] boardState;
-    private int userInput;
+    private String gameBoardFinal;
     private HashSet<Integer> numSet = new HashSet<Integer>();
 
     public TurnDataVars(){
         
     }
 
-    public int[] getPos() {
-        return pos;
+    public void addData(int retVal, char[] boardState) {
+        this.retVal = retVal;
+        this.boardState = boardState;
     }
 
-    public void setPos(int[] posIn) {
-        pos = posIn;
+    public void addToList(String messageFinal, String gameBoardFinal){
+        this.messageFinal = messageFinal;
+        this.gameBoardFinal = gameBoardFinal;
     }
+
+    public String getMessageFinal() {
+        return messageFinal;
+    }
+
+
 
     public int getTurnNum() {
-        return turnNum;
+        return retVal;
     }
 
     public char[] getBoardState() {
@@ -34,12 +42,12 @@ public abstract class TurnDataVars {
         boardState = boardStateIn;
     }
 
-    public int getUserInput() {
-        return userInput;
+    public int getRetValue() {
+        return retVal;
     }
 
-    public void setUserInput(int userInputIn) {
-        userInput = userInputIn;
+    public String getFinalBoard(){
+        return gameBoardFinal;
     }
 
     public HashSet<Integer> getHashSet() {

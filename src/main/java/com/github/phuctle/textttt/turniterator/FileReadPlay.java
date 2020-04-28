@@ -7,10 +7,17 @@ import com.github.phuctle.textttt.winverify.CheckState;
 
 public class FileReadPlay{
     private char[] xOro = {'x','o'};
-    private int[] pos = {-1,-2,-3,-4,-5,-6,-7,-8,-9};
+    private int[] pos;
+    private int retVal;
+    private TurnDataVars varOut =  new TurnDataVars();
+    CreateBlankBoard createBoard = CreateBlankBoard.getInstance();
 
-    public char[] autoPlay(int[] orderOfPlays) {
-        CreateBlankBoard createBoard = CreateBlankBoard.getInstance();
+    public TurnDataVars autoPlay(int[] orderOfPlays) {
+        
+        this.retVal = 0;
+        createBoard.createNewPos();
+        this.pos = createBoard.getNewPos();
+        createBoard.createGameBoard();
         char[] gameBoardOut = createBoard.getNewBoard();
         CheckState checkState = new CheckState();
         int posSelectInt;
@@ -23,21 +30,26 @@ public class FileReadPlay{
                     this.pos[posTemp] = turnCounter%2+1;//assigns user selection to position board
                     int boardTemp = posTemp*4+1+12*(posTemp/3);//formula to change board state
                     gameBoardOut[boardTemp] = this.xOro[turnCounter % 2];
+
+                    //System.out.println(gameBoardOut);
     
-                int retVal = checkState.checkIn(pos);
+                this.retVal = checkState.checkIn(pos);
                 if (retVal == 1){
-                    System.out.println("Player 1 wins!");
-                    break;
+                    this.varOut.addData(this.retVal,gameBoardOut);
+                    return varOut;
                     }
                 else if (retVal == 2){
-                    System.out.println("Player 2 wins!");
-                    break;
+                    this.varOut.addData(this.retVal,gameBoardOut);
+                    return varOut;
                     }
-                else if (turnCounter == orderOfPlays.length-1){
-                    System.out.println("The game is a draw.");
-                    }
+                else if (turnCounter == 8){
+                    this.retVal = -1;
+                }
+
             }
+            this.varOut.addData(this.retVal,gameBoardOut);
             
-        return gameBoardOut;
+        return this.varOut;
     }
+
 }

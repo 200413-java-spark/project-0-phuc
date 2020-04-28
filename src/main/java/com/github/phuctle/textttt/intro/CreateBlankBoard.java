@@ -3,9 +3,10 @@ package com.github.phuctle.textttt.intro;
 public class CreateBlankBoard {
     private static CreateBlankBoard instance;
     private char[] blankBoard;
+    private int[] pos;
 
     private CreateBlankBoard(){
-        
+
     }
 
     public static CreateBlankBoard getInstance() {
@@ -30,10 +31,20 @@ public class CreateBlankBoard {
         for(int i = 0; i <strLength; i++){
             this.blankBoard[i] = gameBoardStr.charAt(i);
         }
-    
     }
 
     public char[] getNewBoard(){
         return this.blankBoard;
+    }
+
+    public void createNewPos(){
+        this.pos = new int[9];
+        for(int i = 0; i<9; i++){
+            this.pos[i] = i*(-1);
+        }
+    }
+
+    public int[] getNewPos(){
+        return this.pos;
     }
 }
