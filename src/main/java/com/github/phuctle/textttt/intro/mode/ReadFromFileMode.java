@@ -48,10 +48,10 @@ public class ReadFromFileMode {
                         else{
                             vicMessage = "The game was incomplete.";
                         }
-                        String[] tempS = new String[2];
-                        tempS[0] = vicMessage;
-                        tempS[1] = boardString;
-                        this.sqlPushList.add(tempS);
+                        String[] inputString = new String[2];
+                        inputString[0] = vicMessage;
+                        inputString[1] = boardString;
+                        this.sqlPushList.add(inputString);
                     }
                 }
             

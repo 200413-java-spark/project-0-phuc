@@ -1,5 +1,5 @@
-create table gameResults (
+create table gameresults (
     id serial primary key,
-    gameBoard varchar,
-    gameResult varchar
+    gameresult varchar,
+    gameboard varchar
 )

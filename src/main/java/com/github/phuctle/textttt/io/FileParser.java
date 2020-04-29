@@ -13,10 +13,10 @@ import java.util.List;
 
 public class FileParser {
 
-    static File testoutput = new File("testOutput.txt");
+    static File fileOutput = new File("fileOutput.txt");
 
-    public static void write(char[] test){
-        try (FileWriter fw = new FileWriter(testoutput, true);
+    public static void write(String[] test){
+        try (FileWriter fw = new FileWriter(fileOutput, true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter pw = new PrintWriter(bw);)
         {

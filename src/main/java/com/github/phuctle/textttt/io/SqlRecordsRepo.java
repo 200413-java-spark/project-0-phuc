@@ -19,7 +19,7 @@ public class SqlRecordsRepo implements Dao<String[]>{
 
     @Override
     public void insertAll(List<String[]> dataVars) {
-        String sql = "insert into gameResults(gameBoard,gameResult) values(?,?)";
+        String sql = "insert into gameresults(gameresult,gameboard) values(?,?)";
         try(Connection connection = this.dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql);){
         for (int i =0; i< dataVars.size();i++){
@@ -38,15 +38,15 @@ public class SqlRecordsRepo implements Dao<String[]>{
     @Override
     public List<String[]> readAll() {
         if (dataList.isEmpty()){
-            String sql = "select * from gameResults";
+            String sql = "select * from gameresults";
 
             try (Connection connection = this.dataSource.getConnection();
                     Statement statement = connection.createStatement();
                     ResultSet resultSet = statement.executeQuery(sql);){
                 
                 while(resultSet.next()){
-                    String vicMessage = resultSet.getString("gameResult");
-                    String gameBoard = resultSet.getString("gameBoard");
+                    String vicMessage = resultSet.getString("gameresult");
+                    String gameBoard = resultSet.getString("gameboard");
                     String[] outResult = new String[2];
                     outResult[0] = vicMessage;
                     outResult[1] = gameBoard;
