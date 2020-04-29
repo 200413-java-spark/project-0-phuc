@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.postgresql.replication.fluent.physical.StartPhysicalReplicationCallback;
+
 public class SqlRecordsRepo implements Dao<String[]>{
     private SqlDataSource dataSource;
     private List<String[]> dataList;
@@ -24,6 +26,13 @@ public class SqlRecordsRepo implements Dao<String[]>{
             PreparedStatement statement = connection.prepareStatement(sql);){
         for (int i =0; i< dataVars.size();i++){
                 statement.setString(1, dataVars.get(i)[0]);
+
+
+                System.out.println("-------------------------------------------");
+                System.out.println(dataVar.get(i)[0]);
+                System.out.println("-------------------------------------------");
+
+
                 statement.setString(2, dataVars.get(i)[1]);
                 statement.addBatch();
             }
@@ -46,6 +55,11 @@ public class SqlRecordsRepo implements Dao<String[]>{
                 
                 while(resultSet.next()){
                     String vicMessage = resultSet.getString("gameresult");
+
+                    System.out.println("-------------------------------------------");
+                    System.out.println(vicMessage);
+                    System.out.println("-------------------------------------------");
+
                     String gameBoard = resultSet.getString("gameboard");
                     String[] outResult = new String[2];
                     outResult[0] = vicMessage;

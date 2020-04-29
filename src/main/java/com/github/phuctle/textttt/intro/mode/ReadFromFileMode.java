@@ -71,8 +71,8 @@ public class ReadFromFileMode {
                 List<String[]> outData = new ArrayList<>();
 				outData = fileInRepo.readAll();
 				for (int i = 0; i< outData.size();i++) {
-                    System.out.println(outData.get(i)[0]);
-                    System.out.println(outData.get(i)[1]);
+                    //System.out.println(outData.get(i)[0]);
+                    //System.out.println(outData.get(i)[1]);
 				}
     }
 }

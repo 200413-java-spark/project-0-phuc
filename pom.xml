@@ -2,9 +2,9 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.phuctle</groupId>
     <artifactId>textttt</artifactId>
-    <version>1.0.0</version>
+    <project.version>1.0.0</project.version>
 
-    <name>TextTTT</name>
+    <project.name>TextTTT</project.name>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
