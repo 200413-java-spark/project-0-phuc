@@ -28,9 +28,9 @@ public class SqlRecordsRepo implements Dao<String[]>{
                 statement.setString(1, dataVars.get(i)[0]);
 
 
-                System.out.println("-------------------------------------------");
-                System.out.println(dataVars.get(i)[0]);
-                System.out.println("-------------------------------------------");
+                //System.out.println("-------------------------------------------");
+                //System.out.println(dataVars.get(i)[0]);
+                //System.out.println("-------------------------------------------");
 
 
                 statement.setString(2, dataVars.get(i)[1]);
@@ -56,9 +56,9 @@ public class SqlRecordsRepo implements Dao<String[]>{
                 while(resultSet.next()){
                     String vicMessage = resultSet.getString("gameresult");
 
-                    System.out.println("-------------------------------------------");
-                    System.out.println(vicMessage);
-                    System.out.println("-------------------------------------------");
+                    //System.out.println("-------------------------------------------");
+                    //System.out.println(vicMessage);
+                    //System.out.println("-------------------------------------------");
 
                     String gameBoard = resultSet.getString("gameboard");
                     String[] outResult = new String[2];
@@ -66,14 +66,11 @@ public class SqlRecordsRepo implements Dao<String[]>{
                     outResult[1] = gameBoard;
                     dataList.add(outResult);
                 }
-            }
-            catch(SQLException e){
+            } catch(SQLException e){
                 System.err.println(e.getMessage());
                 }   
-
-        return dataList;
+            return dataList;} 
+        else {
+            return dataList;}
     }
-    return dataList;
-}
-
 }
