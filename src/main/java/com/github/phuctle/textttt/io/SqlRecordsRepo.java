@@ -29,7 +29,7 @@ public class SqlRecordsRepo implements Dao<String[]>{
 
 
                 System.out.println("-------------------------------------------");
-                System.out.println(dataVar.get(i)[0]);
+                System.out.println(dataVars.get(i)[0]);
                 System.out.println("-------------------------------------------");
 
 
