@@ -19,7 +19,7 @@ public class SqlRecordsRepo implements Dao<String[]>{
 
     @Override
     public void insertAll(List<String[]> dataVars) {
-        String sql = "insert into gameresults(gameresult,gameboard) values(?,?)";
+        String sql = "insert into gameresults(gameresult, gameboard) values(?,?)";
         try(Connection connection = this.dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql);){
         for (int i =0; i< dataVars.size();i++){
